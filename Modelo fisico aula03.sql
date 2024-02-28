@@ -1,0 +1,35 @@
+CREATE DATABASE ESCOLA;
+USE ESCOLA;
+
+CREATE  TABLE Aluno(
+id_alu INT PRIMARY KEY AUTO_INCREMENT,
+nome_alu VARCHAR(80) NOT NULL,
+email_alu VARCHAR(50) NOT NULL,
+telefone_alu VARCHAR(80),
+dataNascimento_alu DATE NOT NULL,
+ativo_alu BOOLEAN DEFAULT TRUE
+
+) ;
+
+ SHOW COLUMNS FROM DISCENTE;
+ 
+
+ ALTER TABLE Aluno ADD cpf_alu VARCHAR(15) NOT NULL UNIQUE AFTER telefone_alu; /*ADICIONA O CPF DEPOIS DO TELEFONE*/
+ 
+
+ALTER TABLE Aluno DROP  email_alu; /*EXCLUIR ATRIBUTO*/
+
+
+ALTER TABLE Aluno ADD email_alu VARCHAR(60) NOT NULL UNIQUE FIRST ; /*ADICIONAR ATRIBUTO NO COMEÇO DA TABELA*/
+
+
+ALTER TABLE Aluno change dataNascimento_alu data_nascimento_aluno DATE; /*MUDA O NOME DO ATRIBUTO*/
+
+
+ALTER TABLE Aluno change  data_nascimento_aluno data_nascimento_aluno VARCHAR(20); /*MUDA O TIPO DE DADO*/
+
+
+ALTER TABLE Aluno change  data_nascimento_aluno dataNascimento_alu DATE; /*MUDA O NOME DO  ATRIBUTO E O TIPO DE DADO*/
+
+
+RENAME TABLE Aluno TO DISCENTE; /*PARA MUDAR O NOME DA TABELA*/
