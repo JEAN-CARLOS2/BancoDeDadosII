@@ -10,16 +10,29 @@ email_usuario VARCHAR(50) NOT NULL UNIQUE
 
 );
 
+CREATE TABLE disciplina(
 
-CREATE TABLE usuario_questao(
+id_disciplina INT PRIMARY KEY AUTO_INCREMENT,
+nome_disc VARCHAR(70)
 
-fk_id_usuario INT,
-fk_id_questao INT,
-FOREIGN KEY (fk_id_usuario) REFERENCES usuario(id_usuario),
-FOREIGN KEY (fk_id_questao) REFERENCES questao(id_questao),
-data_resp DATE,
-resultado VARCHAR(30),
-resposta_usu TEXT
+);
+
+
+CREATE TABLE assunto(
+
+Id_assunto INT PRIMARY KEY AUTO_INCREMENT,
+fk_id_disciplina INT,
+text_ass TEXT,
+campo TEXT,
+FOREIGN KEY(fk_id_disciplina) REFERENCES disciplina(id_disciplina)
+
+);
+
+CREATE TABLE banca(
+
+id_banca INT PRIMARY KEY AUTO_INCREMENT,
+nome_ban VARCHAR(80),
+sigla_ban VARCHAR(10)
 
 );
 
@@ -36,12 +49,19 @@ FOREIGN KEY (fk_id_banca) REFERENCES banca(id_banca)
 
 );
 
-CREATE TABLE disciplina(
 
-id_disciplina INT PRIMARY KEY AUTO_INCREMENT,
-nome_disc VARCHAR(70)
+CREATE TABLE usuario_questao(
+
+fk_id_usuario INT,
+fk_id_questao INT,
+FOREIGN KEY (fk_id_usuario) REFERENCES usuario(id_usuario),
+FOREIGN KEY (fk_id_questao) REFERENCES questao(id_questao),
+data_resp DATE,
+resultado VARCHAR(30),
+resposta_usu TEXT
 
 );
+
 
 CREATE TABLE alternativas(
 
@@ -53,13 +73,12 @@ gabarito_alter TEXT
 
 );
 
-CREATE TABLE assunto(
+CREATE TABLE professor(
 
-Id_assunto INT PRIMARY KEY AUTO_INCREMENT,
-fk_id_disciplina INT,
-text_ass TEXT,
-campo TEXT,
-FOREIGN KEY(fk_id_disciplina) REFERENCES DISCIPLINA(id_disciplina)
+id_professor INT PRIMARY KEY AUTO_INCREMENT,
+email_prof VARCHAR(50) UNIQUE,
+nome_prof VARCHAR(50),
+telefone_prof VARCHAR(11)
 
 );
 
@@ -73,21 +92,3 @@ FOREIGN KEY (fk_id_questao) REFERENCES questao(id_questao),
 FOREIGN KEY (fk_id_professor) REFERENCES professor(id_professor)
 
 );
-
-CREATE TABLE banca(
-
-id_banca INT PRIMARY KEY AUTO_INCREMENT,
-nome_ban VARCHAR(80),
-sigla_ban VARCHAR(10)
-
-);
-
-CREATE TABLE professor(
-
-id_professor INT PRIMARY KEY AUTO_INCREMENT,
-email_prof VARCHAR(50) UNIQUE,
-nome_prof VARCHAR(50),
-telefone_prof VARCHAR(11)
-
-);
-
